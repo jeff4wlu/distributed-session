@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,8 +26,12 @@ public class UserController {
 
     @RequestMapping("/list")
     public String list(Model model) {
+
+        String strSessionId = RequestContextHolder.getRequestAttributes().getSessionId();
+
         List<User> users=userService.getUserList();
         model.addAttribute("users", users);
+        model.addAttribute("sessionId", strSessionId);
         return "user/list";
     }
 
