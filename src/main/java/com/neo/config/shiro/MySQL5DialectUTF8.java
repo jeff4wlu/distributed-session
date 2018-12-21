@@ -1,4 +1,4 @@
-package com.neo.bean;
+package com.neo.config.shiro;
 
 import org.hibernate.dialect.MySQL5InnoDBDialect;
 

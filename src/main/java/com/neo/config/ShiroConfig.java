@@ -1,20 +1,44 @@
 package com.neo.config;
 
-import com.neo.bean.MyShiroRealm;
+import com.neo.config.shiro.MyShiroRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.apache.shiro.mgt.SessionsSecurityManager;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.crazycake.shiro.RedisManager;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+//import org.crazycake.shiro.RedisCacheManager;
+import org.crazycake.shiro.RedisSessionDAO;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
 @Configuration
+@PropertySource("classpath:application.properties")
 public class ShiroConfig {
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilter(DefaultWebSecurityManager securityManager) {
+    public RedisManager redisManager(){
+        RedisManager redisManager = new RedisManager();
+        redisManager.setHost("192.168.1.122:6379");
+        return redisManager;
+    }
+
+    @Bean
+    public RedisSessionDAO  redisSessionDAO(RedisManager redisManager){
+        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+        redisSessionDAO.setRedisManager(redisManager);
+        return redisSessionDAO;
+    }
+
+    @Bean
+    public ShiroFilterFactoryBean shiroFilter(SessionsSecurityManager securityManager) {
         System.out.println("ShiroConfiguration.shiroFilter()");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
@@ -45,9 +69,24 @@ public class ShiroConfig {
     }
 
     @Bean
-    public DefaultWebSecurityManager securityManager() {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(myShiroRealm());
+    public SessionManager sessionManager(RedisSessionDAO redisSessionDAO) {
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+
+        // inject redisSessionDAO
+        sessionManager.setSessionDAO(redisSessionDAO);
+
+        return sessionManager;
+    }
+
+    @Bean
+    public SessionsSecurityManager securityManager(MyShiroRealm realms, SessionManager sessionManager) {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager(realms);
+
+        //inject sessionManager
+        securityManager.setSessionManager(sessionManager);
+
+        // inject redisCacheManager
+        //securityManager.setCacheManager(redisCacheManager);
         return securityManager;
     }
 
