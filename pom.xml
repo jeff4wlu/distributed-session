@@ -31,11 +31,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
-        </dependency>
+        </dependency>-->
 
 
         <dependency>
@@ -61,20 +62,20 @@
                 </configuration>
             </plugin>
             <!-- 有些项目的jar包不是在maven服务器上能够下载的，那么需要将这样的包放在项目的lib目录下，
-                    不过这样会导致maven打包时找不到包，报错。可以通过下面的配置解决这个问题 -->
+                    不过这样会导致maven打包时找不到包，报错。可以通过下面的配置解决这个问题
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
-                    <compilerArgs>
-                        <arg>-extdirs</arg>
-                        <arg>${project.basedir}/src/lib</arg>
-                    </compilerArgs>
+                    <compilerArguments>
+                        <extdirs>${basedir}/src/lib/shiro-redis.jar</extdirs>
+                    </compilerArguments>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <!-- 1、设置jar的入口类 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -84,7 +85,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
+                            <classpathPrefix>BOOT-INF/lib/</classpathPrefix>
                             <mainClass>com.neo.JpaThymeleafApplication</mainClass>
                         </manifest>
                     </archive>

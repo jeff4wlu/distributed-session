@@ -1,25 +1,31 @@
 package com.neo.web;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Map;
 
 @Controller
 public class HomeController {
 
     @RequestMapping({ "/", "index" })
-    public String index() {
-        return "/index";
+    public String index(Model model) {
+        model.addAttribute("sessionId", SecurityUtils.getSubject().getSession().getId());
+        return "index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return "/login";
+        return "login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -46,6 +52,18 @@ public class HomeController {
         }
         map.put("msg", msg);
         // 此方法不处理登录成功,由shiro进行处理.
-        return "/login";
+        return "login";
     }
+
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+        Subject principal = SecurityUtils.getSubject();
+        // 如果已经登录，则跳转到管理首页
+        if(principal != null){
+            principal.logout();
+        }
+        return "redirect:/login";
+    }
+
 }
