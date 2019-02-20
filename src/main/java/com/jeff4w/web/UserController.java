@@ -1,7 +1,7 @@
-package com.neo.web;
+package com.jeff4w.web;
 
-import com.neo.entity.User;
-import com.neo.service.UserService;
+import com.jeff4w.entity.User;
+import com.jeff4w.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;

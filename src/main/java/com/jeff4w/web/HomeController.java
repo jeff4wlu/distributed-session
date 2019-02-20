@@ -1,4 +1,4 @@
-package com.neo.web;
+package com.jeff4w.web;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;

@@ -1,6 +1,6 @@
-package com.neo.service;
+package com.jeff4w.service;
 
-import com.neo.entity.User;
+import com.jeff4w.entity.User;
 
 import java.util.List;
 

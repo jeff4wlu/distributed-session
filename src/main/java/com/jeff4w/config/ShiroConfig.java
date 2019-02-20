@@ -1,6 +1,6 @@
-package com.neo.config;
+package com.jeff4w.config;
 
-import com.neo.config.shiro.MyShiroRealm;
+import com.jeff4w.config.shiro.MyShiroRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SessionsSecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;

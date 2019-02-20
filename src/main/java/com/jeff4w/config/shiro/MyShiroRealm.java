@@ -1,9 +1,9 @@
-package com.neo.config.shiro;
+package com.jeff4w.config.shiro;
 
-import com.neo.entity.SysPermission;
-import com.neo.entity.SysRole;
-import com.neo.entity.UserInfo;
-import com.neo.service.UserInfoService;
+import com.jeff4w.entity.SysPermission;
+import com.jeff4w.entity.SysRole;
+import com.jeff4w.entity.UserInfo;
+import com.jeff4w.service.UserInfoService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

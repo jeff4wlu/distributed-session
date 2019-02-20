@@ -1,8 +1,8 @@
-package com.neo.service.impl;
+package com.jeff4w.service.impl;
 
-import com.neo.entity.User;
-import com.neo.repository.UserRepository;
-import com.neo.service.UserService;
+import com.jeff4w.entity.User;
+import com.jeff4w.repository.UserRepository;
+import com.jeff4w.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

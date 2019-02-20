@@ -1,4 +1,4 @@
-package com.neo;
+package com.jeff4w;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

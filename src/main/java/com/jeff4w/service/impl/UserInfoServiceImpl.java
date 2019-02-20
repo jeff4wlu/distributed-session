@@ -1,8 +1,8 @@
-package com.neo.service.impl;
+package com.jeff4w.service.impl;
 
-import com.neo.entity.UserInfo;
-import com.neo.repository.UserInfoRepository;
-import com.neo.service.UserInfoService;
+import com.jeff4w.entity.UserInfo;
+import com.jeff4w.repository.UserInfoRepository;
+import com.jeff4w.service.UserInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

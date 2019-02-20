@@ -26,7 +26,7 @@
         <tbody>
         <tr  th:each="user : ${users}">
             <th scope="row" th:text="${user.id}">1</th>
-            <td th:text="${user.userName}">neo</td>
+            <td th:text="${user.userName}">jeff4w</td>
             <td th:text="${user.password}">Otto</td>
             <td th:text="${user.age}">6</td>
             <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>

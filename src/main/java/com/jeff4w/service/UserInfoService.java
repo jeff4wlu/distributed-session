@@ -1,6 +1,6 @@
-package com.neo.service;
+package com.jeff4w.service;
 
-import com.neo.entity.UserInfo;
+import com.jeff4w.entity.UserInfo;
 
 public interface UserInfoService {
 

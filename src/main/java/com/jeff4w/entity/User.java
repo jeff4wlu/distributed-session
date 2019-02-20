@@ -1,4 +1,4 @@
-package com.neo.entity;
+package com.jeff4w.entity;
 
 import javax.persistence.*;
 

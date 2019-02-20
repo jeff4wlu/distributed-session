@@ -1,6 +1,6 @@
-package com.neo.repository;
+package com.jeff4w.repository;
 
-import com.neo.entity.UserInfo;
+import com.jeff4w.entity.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
